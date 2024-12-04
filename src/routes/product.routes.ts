@@ -4,7 +4,7 @@ import {
     updateProduct,
     getProducts,
     getProductById,
-    getTotalStockQuantity,
+    getTotalStock, // Use this function for total stock
 } from '../controllers/product.controller';
 import { validateId } from '../middleware/validateId';
 
@@ -23,6 +23,6 @@ router.get('/', getProducts);
 router.get('/:id', validateId, getProductById);
 
 // Get total stock quantity
-router.get('/total-stock', getTotalStockQuantity);
+router.get('/total-stock', getTotalStock); // Only this route remains
 
 export default router;

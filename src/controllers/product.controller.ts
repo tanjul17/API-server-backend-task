@@ -62,3 +62,20 @@ export const getTotalStockQuantity = async (_req: Request, res: Response): Promi
         res.status(500).json({ error: 'Error calculating total stock quantity', details: error.message });
     }
 };
+// Get total stock quantity for all products combined
+ export const getTotalStock = async (_req: Request, res: Response): Promise<void> => {
+     try {
+         const totalStock = await Product.aggregate([
+             {
+                 $group: {
+                     _id: null, // Group all documents together
+                     totalStock: { $sum: '$stockQuantity' }, // Sum the stockQuantity field
+                 },
+             },
+         ]);
+ 
+         res.status(200).json({ totalStock: totalStock[0]?.totalStock || 0 });
+     } catch (error: any) {
+         res.status(500).json({ error: 'Error calculating total stock', details: error.message });
+     }
+ };
