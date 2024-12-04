@@ -6,6 +6,10 @@
     "express": "^4.21.1",
     "mongoose": "^8.8.3"
   },
+    "scripts": {
+      "start": "node dist/server.ts", 
+      "build": "tsc"
+    },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
